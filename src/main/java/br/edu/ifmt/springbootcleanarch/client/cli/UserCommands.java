@@ -10,7 +10,7 @@ import org.springframework.shell.command.annotation.Option;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Command(group = "User Commands")
-public class MyCommands {
+public class UserCommands {
 
     @Autowired
     private UserPort userPort = null;

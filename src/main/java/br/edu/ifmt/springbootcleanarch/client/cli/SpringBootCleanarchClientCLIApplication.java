@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.shell.command.annotation.EnableCommand;
 
 @SpringBootApplication
-@EnableCommand(MyCommands.class)
+@EnableCommand(UserCommands.class)
 public class SpringBootCleanarchClientCLIApplication {
 
 	public static void main(String[] args) {
