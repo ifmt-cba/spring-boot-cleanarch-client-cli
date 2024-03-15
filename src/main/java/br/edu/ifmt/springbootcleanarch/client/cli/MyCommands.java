@@ -4,23 +4,23 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.shell.standard.ShellComponent;
-import org.springframework.shell.standard.ShellMethod;
-import org.springframework.shell.standard.ShellOption;
+import org.springframework.shell.command.annotation.Command;
+import org.springframework.shell.command.annotation.Option;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@ShellComponent
+@Command(group = "User Commands")
 public class MyCommands {
 
     @Autowired
     private UserPort userPort = null;
 
-    @ShellMethod(key = "create-user")
+    @Command(command = "create-user",
+             description = "Cadastra um novo usuário")
     public String createUser(
-        @ShellOption String name,
-        @ShellOption String email,
-        @ShellOption String password
+        @Option(required = true, shortNames = 'n', description = "Nome do usuário") String name,
+        @Option(required = true, shortNames = 'e', description = "E-mail do usuário") String email,
+        @Option(required = true, shortNames = 'p', description = "Senha do usuário") String password
     ) {
         try {
             String reply = userPort.createUser(name, email, password);
