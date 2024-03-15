@@ -27,20 +27,28 @@ public class SpringBootCleanarchClientCLIApplication {
 			@Override
 			public String createUser(String username, String email, String password) throws IOException {
 
-				URL url = new URL("http://localhost:8080/users");
+				URL url = new URL("http://localhost:7070/users");
 				HttpURLConnection con = (HttpURLConnection) url.openConnection();
 				con.setRequestMethod("POST");
-
-				Map<String, String> parameters = new HashMap<>();
-				parameters.put("username", username);
-				parameters.put("email", email);
-				parameters.put("password", password);
+				con.setRequestProperty("Content-Type", "application/json");
+				//Map<String, String> parameters = new HashMap<>();
+				//parameters.put("username", username);
+				//parameters.put("email", email);
+				//parameters.put("password", password);
+				String parameters = String.format("""
+						{
+							"username":"%s",
+							"email":"%s",
+							"password":"%s"
+						}
+						""",username, email,password);
 
 				con.setDoOutput(true);
 				con.setConnectTimeout(5000);
 				con.setReadTimeout(5000);				
 				DataOutputStream out = new DataOutputStream(con.getOutputStream());
-				out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
+				//out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
+				out.writeBytes(parameters);
 				out.flush();
 				out.close();
 
