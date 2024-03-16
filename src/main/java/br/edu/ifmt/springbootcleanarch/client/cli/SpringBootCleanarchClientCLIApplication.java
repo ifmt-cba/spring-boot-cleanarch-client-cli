@@ -27,7 +27,7 @@ public class SpringBootCleanarchClientCLIApplication {
 			@Override
 			public String createUser(String username, String email, String password) throws IOException {
 
-				URL url = new URL("http://localhost:7070/users");
+				URL url = new URL("http://cleanarch:7070/users");
 				HttpURLConnection con = (HttpURLConnection) url.openConnection();
 				con.setRequestMethod("POST");
 				con.setRequestProperty("Content-Type", "application/json");
