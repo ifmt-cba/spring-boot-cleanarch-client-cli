@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.shell.command.annotation.EnableCommand;
 
 @SpringBootApplication
-@EnableCommand(UserCommands.class)
+@EnableCommand({UserCommands.class,GlobalCommands.class})
 public class SpringBootCleanarchClientCLIApplication {
 
 	public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class SpringBootCleanarchClientCLIApplication {
 			@Override
 			public String createUser(String username, String email, String password) throws IOException {
 
-				URL url = new URL("http://cleanarch:7070/users");
+				URL url = new URL(GlobalCommands.url + "/users");
 				HttpURLConnection con = (HttpURLConnection) url.openConnection();
 				con.setRequestMethod("POST");
 				con.setRequestProperty("Content-Type", "application/json");
