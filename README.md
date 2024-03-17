@@ -9,17 +9,20 @@
 
 Demo para ilustrar como implementar um cliente CLI.
 
-## Tecnologias
+# 1. Tecnologias
  
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [Spring Shell]()
 
-## Como Executar
+# 2. Como Executar
 
 - Clonar repositório git:
 ```shell
 git clone https://github.com/ifmt-cba/spring-boot-cleanarch-client-cli.git
 ```
+
+## 2.1 Sem o uso de contêiner
+
 - Construir o projeto:
 ```shell
 ./mvnw clean package
@@ -27,8 +30,17 @@ git clone https://github.com/ifmt-cba/spring-boot-cleanarch-client-cli.git
 - Executar:
 ```shell
 java -jar ./target/spring-boot-cleanarch-client-cli-v1.0.jar
+help
 ```
 
+## 2.2. Com Docker
+
+- Construir os projetos:
 ```shell
-create --arg valor
+./build.sh
+```
+- Executar:
+```shell
+docker run --name cli -it br.edu.ifmt/cleanarch-cli
+help
 ```
