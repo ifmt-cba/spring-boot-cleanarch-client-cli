@@ -1,0 +1,30 @@
+#https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-resource-requests-and-limits
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cleanarch-cli-deployment
+  labels:
+    app: cleanarch-cli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cleanarch-cli
+  template:
+    metadata:
+      labels:
+        app: cleanarch-cli
+    spec:
+      containers:
+      - name: cleanarch-cli
+        image: br.edu.ifmt/cleanarch-cli
+        tty: true
+        stdin: true
+        imagePullPolicy: Never
+        resources:
+          limits:
+            cpu: "1"        
+            memory: "200Mi"
+          requests:
+            cpu: "0.5"       # deve garantir pelo menos meia CPU
+            memory: "100Mi"  # deve garantir pelo menos 100 megas de memória
